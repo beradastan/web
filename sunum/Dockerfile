@@ -3,8 +3,8 @@ FROM maven:3-eclipse-temurin-17 AS build
 WORKDIR /app
 
 # pom.xml ve kaynak kodları doğru dizinden al
-COPY sunum/sunum/pom.xml .  
-COPY sunum/sunum/src ./src  
+COPY sunum/pom.xml .  
+COPY sunum/src ./src  
 
 # Önceden bağımlılıkları indir
 RUN mvn dependency:go-offline  
