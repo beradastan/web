@@ -1,23 +1,11 @@
-# 1. Maven ile derleme yapacak build aşaması
+# 1️⃣ Maven ile projeyi build etme
 FROM maven:3-eclipse-temurin-17 AS build
-
-# 2. Proje dosyalarını konteynere kopyala
-COPY . /app
-
-# 3. Çalışma dizinini POM.xml'in olduğu klasör olarak belirle
-WORKDIR /app/sunum
-
-# 4. Maven ile projeyi derle (testleri atlayarak)
+WORKDIR /sunum
+COPY . .
 RUN mvn clean package -DskipTests
 
-# 5. Hafif bir Java runtime ortamına geç
+# 2️⃣ Java ile JAR dosyasını çalıştırma
 FROM eclipse-temurin:17-alpine
-
-# 6. Derlenen JAR dosyasını al
-COPY --from=build /app/sunum/target/*.jar /app/app.jar
-
-# 7. Çalışma dizinini belirle
-WORKDIR /app
-
-# 8. Uygulamayı başlat
+WORKDIR /sunum
+COPY --from=build /sunum/target/*.jar app.jar
 CMD ["java", "-jar", "app.jar"]
