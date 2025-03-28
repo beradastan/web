@@ -17,5 +17,5 @@ FROM eclipse-temurin:17-alpine
 WORKDIR /app
 
 # Oluşan JAR dosyasını al ve çalıştır
-COPY --from=build /buil/target/SUNUM-0.0.1-SNAPSHOT.jar sunum.jar
+COPY --from=build /buil/target/sunum-0.0.1-SNAPSHOT.jar sunum.jar
 CMD ["java", "-jar", "sunum.jar"]
