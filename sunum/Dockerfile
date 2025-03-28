@@ -7,5 +7,5 @@ RUN mvn clean package -DskipTests
 # 2️⃣ Java ile JAR dosyasını çalıştırma
 FROM eclipse-temurin:17-alpine
 WORKDIR /sunum
-COPY --from=build /sunum/target/sunum-*.jar sunum.jar
-CMD ["java", "-jar", "SUNUM-0.0.1-SNAPSHOT.jar"]
+COPY --from=build /sunum/target/SUNUM-0.0.1-SNAPSHOT.jar sunum.jar
+CMD ["java", "-jar", "sunum.jar"]
