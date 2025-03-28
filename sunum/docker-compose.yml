@@ -1,26 +1,12 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8
-    container_name: sunum-mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: sunum
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-    ports:
-      - "3307:3306"
-
   app:
     build: .
     container_name: sunum-app
-    depends_on:
-      - mysql
     environment:
       SPRING_APPLICATION_NAME: sunum
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/sunum
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3307/sunum
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
