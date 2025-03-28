@@ -2,14 +2,12 @@
 FROM maven:3-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# pom.xml dosyanın olduğu dizini belirt
+# pom.xml ve kaynak kodları doğru dizinden al
 COPY sunum/sunum/pom.xml .  
+COPY sunum/sunum/src ./src  
 
 # Önceden bağımlılıkları indir
 RUN mvn dependency:go-offline  
-
-# Proje kaynak kodlarını kopyala
-COPY sunum/sunum/src ./src  
 
 # Maven ile projeyi build et
 RUN mvn clean package -DskipTests
